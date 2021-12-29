@@ -6,5 +6,6 @@ services:
     volumes:
       - ./consensus/validator.key:/app/consensus/validator.key
       - ./libp2p/libp2p.key:/app/libp2p/libp2p.key
+      - ./genesis.json:/app/genesis.json
     # ports:
     #   - "5555:8080"
