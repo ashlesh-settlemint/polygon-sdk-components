@@ -1,0 +1,20 @@
+{
+  "name": "polygon-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bip32": "^3.0.1",
+    "bitcoinjs-lib": "^6.0.1",
+    "ecpair": "^1.0.1",
+    "elliptic": "^6.5.4",
+    "libp2p-crypto": "^0.21.0",
+    "peer-id": "^0.16.0",
+    "secp256k1": "^4.0.2"
+  }
+}

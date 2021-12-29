@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  validator:
+    image: polygon-sdk
+    volumes:
+      - ./consensus/validator.key:/app/consensus/validator.key
+      - ./libp2p/libp2p.key:/app/libp2p/libp2p.key
+    # ports:
+    #   - "5555:8080"
