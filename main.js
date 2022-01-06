@@ -47,14 +47,14 @@ function generateGenesisFile(peerIds) {
       nonce: "0x0000000000000000",
       timestamp: "0x0",
       extraData,
-      gasLimit: 0x500000,
+      gasLimit: "0x500000",
       Difficulty: "0x1",
       mixHash:
         "0x0000000000000000000000000000000000000000000000000000000000000000",
       coinbase: "0x0000000000000000000000000000000000000000",
       Alloc: {},
       number: "0x0",
-      gasUsed: 0x70000,
+      gasUsed: "0x70000",
       parentHash:
         "0x0000000000000000000000000000000000000000000000000000000000000000",
     },
