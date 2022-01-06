@@ -1,11 +1,35 @@
 version: "3"
 
 services:
-  validator:
-    image: polygon-sdk
+  validator1:
+    image: ashlesh/polygon-sdk
+    command: server --data-dir /go/bin/data-dir-1 --chain /go/bin/genesis.json  --libp2p 0.0.0.0:1478 --nat 0.0.0.0 --seal
     volumes:
-      - ./consensus/validator.key:/app/consensus/validator.key
-      - ./libp2p/libp2p.key:/app/libp2p/libp2p.key
-      - ./genesis.json:/app/genesis.json
-    # ports:
-    #   - "5555:8080"
+      - ./data-dir-1:/go/bin/data-dir-1
+      - ./genesis.json:/go/bin/genesis.json
+    ports:
+      - 8545:8545
+  validator2:
+    image: ashlesh/polygon-sdk
+    command: server --data-dir /go/bin/data-dir-2 --chain /go/bin/genesis.json  --libp2p 0.0.0.0:1478 --nat 0.0.0.0 --seal
+    volumes:
+      - ./data-dir-2:/go/bin/data-dir-2
+      - ./genesis.json:/go/bin/genesis.json
+    ports:
+      - 8546:8545
+  validator3:
+    image: ashlesh/polygon-sdk
+    command: server --data-dir /go/bin/data-dir-3 --chain /go/bin/genesis.json  --libp2p 0.0.0.0:1478 --nat 0.0.0.0 --seal
+    volumes:
+      - ./data-dir-3:/go/bin/data-dir-3
+      - ./genesis.json:/go/bin/genesis.json
+    ports:
+      - 8547:8545
+  validator4:
+    image: ashlesh/polygon-sdk
+    command: server --data-dir /go/bin/data-dir-4 --chain /go/bin/genesis.json  --libp2p 0.0.0.0:1478 --nat 0.0.0.0 --seal
+    volumes:
+      - ./data-dir-4:/go/bin/data-dir-4
+      - ./genesis.json:/go/bin/genesis.json
+    ports:
+      - 8548:8545
