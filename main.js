@@ -25,7 +25,7 @@ function generateGenesisFile(peerIds) {
   for (let i = 1; i <= 4; i++) {
     validatorAddresses.push(
       fs
-        .readFileSync(`./test-chain-${i}/consensus/validatorAddress.key`)
+        .readFileSync(`./data-dir-${i}/consensus/validatorAddress.key`)
         .toString()
     );
   }
@@ -85,19 +85,19 @@ function generateGenesisFile(peerIds) {
 }
 
 function storeKeys(validatorPvtKey, validatorAddress, libp2pPvtKey, index) {
-  fs.mkdirSync(`test-chain-${index}`);
-  fs.mkdirSync(`test-chain-${index}/consensus`);
-  fs.mkdirSync(`test-chain-${index}/libp2p`);
+  fs.mkdirSync(`data-dir-${index}`);
+  fs.mkdirSync(`data-dir-${index}/consensus`);
+  fs.mkdirSync(`data-dir-${index}/libp2p`);
 
   fs.writeFileSync(
-    `./test-chain-${index}/consensus/validator.key`,
+    `./data-dir-${index}/consensus/validator.key`,
     validatorPvtKey
   );
   fs.writeFileSync(
-    `./test-chain-${index}/consensus/validatorAddress.key`,
+    `./data-dir-${index}/consensus/validatorAddress.key`,
     validatorAddress
   );
-  fs.writeFileSync(`./test-chain-${index}/libp2p/libp2p.key`, libp2pPvtKey);
+  fs.writeFileSync(`./data-dir-${index}/libp2p/libp2p.key`, libp2pPvtKey);
 }
 
 async function main() {
