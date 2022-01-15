@@ -52,7 +52,11 @@ function generateGenesisFile(peerIds) {
       mixHash:
         "0x0000000000000000000000000000000000000000000000000000000000000000",
       coinbase: "0x0000000000000000000000000000000000000000",
-      Alloc: {},
+      Alloc: {
+        "0x98959C1A81e2aB56633860571403fD60f421c31C": {
+          balance: "0x3635c9adc5dea00000",
+        },
+      },
       number: "0x0",
       gasUsed: "0x70000",
       parentHash:
@@ -76,8 +80,8 @@ function generateGenesisFile(peerIds) {
       blockGasTarget: 0,
     },
     bootnodes: [
-      `/ip4/127.0.0.1/tcp/10001/p2p/${peerIds[0]}`,
-      `/ip4/127.0.0.1/tcp/20001/p2p/${peerIds[1]}`,
+      `/dns4/validator-1/tcp/1478/p2p/${peerIds[0]}`,
+      `/dns4/validator-2/tcp/1478/p2p/${peerIds[1]}`,
     ],
   };
 

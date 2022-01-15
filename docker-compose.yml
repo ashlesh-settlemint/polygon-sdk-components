@@ -1,35 +1,43 @@
-version: "3"
-
+version: "3.9"
 services:
-  validator1:
+  validator-1:
     image: ashlesh/polygon-sdk
-    command: server --data-dir /go/bin/data-dir-1 --chain /go/bin/genesis.json  --libp2p 0.0.0.0:1478 --nat 0.0.0.0 --seal
+    working_dir: /root
+    entrypoint: ""
+    command: "polygon server --data-dir /root/chain --chain /root/genesis.json --grpc validator-1:2000 --libp2p validator-1:1478 --jsonrpc validator-1:8545 --seal"
     volumes:
-      - ./data-dir-1:/go/bin/data-dir-1
-      - ./genesis.json:/go/bin/genesis.json
+      - ./genesis.json:/root/genesis.json
+      - ./data-dir-1:/root/chain
     ports:
       - 8545:8545
-  validator2:
+
+  validator-2:
     image: ashlesh/polygon-sdk
-    command: server --data-dir /go/bin/data-dir-2 --chain /go/bin/genesis.json  --libp2p 0.0.0.0:1478 --nat 0.0.0.0 --seal
+    working_dir: /root
+    entrypoint: ""
+    command: "polygon server --data-dir /root/chain --chain /root/genesis.json --grpc validator-2:2000 --libp2p validator-2:1478 --jsonrpc validator-2:8545 --seal"
     volumes:
-      - ./data-dir-2:/go/bin/data-dir-2
-      - ./genesis.json:/go/bin/genesis.json
-    ports:
-      - 8546:8545
-  validator3:
+      - ./genesis.json:/root/genesis.json
+      - ./data-dir-2:/root/chain
+
+  validator-3:
     image: ashlesh/polygon-sdk
-    command: server --data-dir /go/bin/data-dir-3 --chain /go/bin/genesis.json  --libp2p 0.0.0.0:1478 --nat 0.0.0.0 --seal
+    working_dir: /root
+    entrypoint: ""
+    command: "polygon server --data-dir /root/chain --chain /root/genesis.json --grpc validator-3:2000 --libp2p validator-3:1478 --jsonrpc validator-3:8545 --seal"
     volumes:
-      - ./data-dir-3:/go/bin/data-dir-3
-      - ./genesis.json:/go/bin/genesis.json
-    ports:
-      - 8547:8545
-  validator4:
+      - ./genesis.json:/root/genesis.json
+      - ./data-dir-3:/root/chain
+
+  validator-4:
     image: ashlesh/polygon-sdk
-    command: server --data-dir /go/bin/data-dir-4 --chain /go/bin/genesis.json  --libp2p 0.0.0.0:1478 --nat 0.0.0.0 --seal
+    working_dir: /root
+    entrypoint: ""
+    command: "polygon server --data-dir /root/chain --chain /root/genesis.json --grpc validator-4:2000 --libp2p validator-4:1478 --jsonrpc validator-4:8545 --seal"
     volumes:
-      - ./data-dir-4:/go/bin/data-dir-4
-      - ./genesis.json:/go/bin/genesis.json
-    ports:
-      - 8548:8545
+      - ./genesis.json:/root/genesis.json
+      - ./data-dir-4:/root/chain
+
+networks:
+  default:
+    name: polygon-network
