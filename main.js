@@ -22,7 +22,7 @@ async function generateKeys() {
 function generateGenesisFile(peerIds) {
   const validatorAddresses = [];
 
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 1; i <= 1; i++) {
     validatorAddresses.push(
       fs
         .readFileSync(`./data-dir-${i}/consensus/validatorAddress.key`)
@@ -48,15 +48,11 @@ function generateGenesisFile(peerIds) {
       timestamp: "0x0",
       extraData,
       gasLimit: "0x500000",
-      Difficulty: "0x1",
+      difficulty: "0x1",
       mixHash:
         "0x0000000000000000000000000000000000000000000000000000000000000000",
       coinbase: "0x0000000000000000000000000000000000000000",
-      Alloc: {
-        "0x98959C1A81e2aB56633860571403fD60f421c31C": {
-          balance: "0x3635c9adc5dea00000",
-        },
-      },
+      alloc: {},
       number: "0x0",
       gasUsed: "0x70000",
       parentHash:
@@ -75,14 +71,13 @@ function generateGenesisFile(peerIds) {
       },
       chainID: 100,
       engine: {
-        ibft: {},
+        ibft: {
+          type: "PoA",
+        },
       },
       blockGasTarget: 0,
     },
-    bootnodes: [
-      `/dns4/validator-1/tcp/1478/p2p/${peerIds[0]}`,
-      `/dns4/validator-2/tcp/1478/p2p/${peerIds[1]}`,
-    ],
+    bootnodes: [`/dns4/validator-1/tcp/1478/p2p/${peerIds[0]}`],
   };
 
   fs.writeFileSync("genesis.json", JSON.stringify(genesisJson));
@@ -107,7 +102,7 @@ function storeKeys(validatorPvtKey, validatorAddress, libp2pPvtKey, index) {
 async function main() {
   const peerIds = [];
 
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 1; i <= 1; i++) {
     const { validatorPvtKey, validatorAddress, libp2pKeyPair } =
       await generateKeys();
     const libp2pPvtKeyBuf = crypto.keys.marshalPrivateKey(libp2pKeyPair);
@@ -115,7 +110,7 @@ async function main() {
 
     storeKeys(validatorPvtKey, validatorAddress, libp2pPvtKey, i);
 
-    peer.createFromPrivKey(libp2pPvtKeyBuf).then((res) => {
+    await peer.createFromPrivKey(libp2pPvtKeyBuf).then((res) => {
       peerIds.push(res._idB58String);
       console.log({
         validatorPvtKey,
